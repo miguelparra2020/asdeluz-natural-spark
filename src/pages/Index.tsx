@@ -13,6 +13,7 @@ const Index = () => {
       <Hero />
       <ProductCatalog />
       <HowToBuy />
+      <Testimonials />
 
       {/* CTA final */}
       <section className="py-20 bg-primary text-primary-foreground text-center">
