@@ -21,7 +21,7 @@ const categories: Category[] = [
     products: [
       { name: "Avena integral", description: "Fuente natural de fibra y energía para tu día", image: avenaIntegralImg },
       { name: "Cereales para el desayuno", description: "Mezcla nutritiva para empezar con energía" },
-      { name: "Quinoa", description: "Superalimento andino rico en proteínas y minerales" },
+      { name: "Quinoa", description: "Superalimento andino rico en proteínas y minerales", image: quinoaImg },
       { name: "Germen de trigo", description: "Concentrado de vitaminas del grupo B y vitamina E" },
     ],
   },
