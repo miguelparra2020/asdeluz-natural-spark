@@ -96,8 +96,12 @@ const ProductCard = ({ product, categoryEmoji }: { product: Product; categoryEmo
   return (
     <div className="bg-card rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 group flex flex-col">
       {/* Emoji/image area */}
-      <div className="relative bg-secondary flex items-center justify-center h-40">
-        <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{categoryEmoji}</span>
+      <div className="relative bg-secondary flex items-center justify-center h-40 overflow-hidden">
+        {product.image ? (
+          <img src={product.image} alt={product.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+        ) : (
+          <span className="text-6xl group-hover:scale-110 transition-transform duration-300">{categoryEmoji}</span>
+        )}
         <span className="absolute top-3 left-3 bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
           <Star className="w-3 h-3" />
           Natural
