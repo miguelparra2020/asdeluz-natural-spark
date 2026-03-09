@@ -1,6 +1,7 @@
 import { MessageCircle, Star } from "lucide-react";
 import avenaIntegralImg from "@/assets/products/avena-integral.jpg";
 import quinoaImg from "@/assets/products/quinoa.jpg";
+import semillasCalabazaImg from "@/assets/products/semillas-calabaza.jpg";
 
 interface Product {
   name: string;
@@ -32,7 +33,7 @@ const categories: Category[] = [
       { name: "Chía", description: "Rica en omega-3 y fibra soluble" },
       { name: "Linaza", description: "Semilla dorada con alto contenido en fibra" },
       { name: "Ajonjolí (sésamo)", description: "Fuente de calcio y minerales esenciales" },
-      { name: "Semillas de calabaza", description: "Ricas en zinc y magnesio natural" },
+      { name: "Semillas de calabaza", description: "Ricas en zinc y magnesio natural", image: semillasCalabazaImg },
       { name: "Semillas de girasol", description: "Snack nutritivo con vitamina E" },
       { name: "Almendras", description: "Fruto seco premium rico en proteínas" },
       { name: "Nueces de nogal", description: "Fuente natural de omega-3 y antioxidantes" },
