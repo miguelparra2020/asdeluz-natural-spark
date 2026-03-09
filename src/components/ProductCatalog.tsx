@@ -1,6 +1,7 @@
 import { MessageCircle, Star } from "lucide-react";
 import avenaIntegralImg from "@/assets/products/avena-integral.jpg";
 import quinoaImg from "@/assets/products/quinoa.jpg";
+import semillasCalabazaImg from "@/assets/products/semillas-calabaza.jpg";
 
 interface Product {
   name: string;
