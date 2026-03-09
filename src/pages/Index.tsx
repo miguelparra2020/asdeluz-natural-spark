@@ -2,6 +2,7 @@ import { Navbar, Footer } from "@/components/Layout";
 import Hero from "@/components/Hero";
 import ProductCatalog from "@/components/ProductCatalog";
 import HowToBuy from "@/components/HowToBuy";
+import Testimonials from "@/components/Testimonials";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { MessageCircle } from "lucide-react";
 
@@ -12,6 +13,7 @@ const Index = () => {
       <Hero />
       <ProductCatalog />
       <HowToBuy />
+      <Testimonials />
 
       {/* CTA final */}
       <section className="py-20 bg-primary text-primary-foreground text-center">
