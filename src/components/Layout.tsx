@@ -23,7 +23,7 @@ const Footer = () => (
     <div className="container">
       <div className="flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-2">
-          <Leaf className="w-5 h-5" />
+          <img src={asDeLuzLogo} alt="As de luz" className="h-8 w-auto" />
           <span className="font-display font-bold text-lg">As de luz</span>
         </div>
         <div className="text-center md:text-right">
