@@ -27,9 +27,21 @@ const Footer = () => (
           <Leaf className="w-5 h-5" />
           <span className="font-display font-bold text-lg">As de luz</span>
         </div>
-        <p className="text-primary-foreground/60 text-sm">
-          © 2026 As de luz. Productos naturales en Pereira y Dosquebradas.
-        </p>
+        <div className="text-center md:text-right">
+          <p className="text-primary-foreground/60 text-sm">
+            © 2026 As de luz. Productos naturales en Pereira y Dosquebradas.
+          </p>
+          <a
+            href="https://comercyo.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-primary-foreground/50 hover:text-primary-foreground/80 transition-colors text-xs mt-2"
+          >
+            By
+            <img src={comercyoLogo} alt="Comercyo" className="w-4 h-4 rounded-full" />
+            Comercyo.com
+          </a>
+        </div>
       </div>
     </div>
   </footer>
