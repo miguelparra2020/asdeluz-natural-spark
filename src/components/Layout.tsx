@@ -1,14 +1,12 @@
 import WhatsAppButton from "@/components/WhatsAppButton";
-import { Leaf } from "lucide-react";
 import comercyoLogo from "@/assets/comercyo-logo.png";
+import asDeLuzLogo from "@/assets/as-de-luz-logo.png";
 
 const Navbar = () => (
   <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
     <div className="container flex items-center justify-between h-16">
       <div className="flex items-center gap-2">
-        <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
-          <Leaf className="w-5 h-5 text-primary-foreground" />
-        </div>
+        <img src={asDeLuzLogo} alt="As de luz" className="h-10 w-auto" />
         <span className="font-display font-bold text-lg text-foreground">As de luz</span>
       </div>
       <div className="hidden md:flex items-center gap-8">
@@ -25,7 +23,7 @@ const Footer = () => (
     <div className="container">
       <div className="flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="flex items-center gap-2">
-          <Leaf className="w-5 h-5" />
+          <img src={asDeLuzLogo} alt="As de luz" className="h-8 w-auto" />
           <span className="font-display font-bold text-lg">As de luz</span>
         </div>
         <div className="text-center md:text-right">
