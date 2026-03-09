@@ -1,8 +1,10 @@
-import { Wheat, Nut, Leaf, CakeSlice, Droplets, FlaskConical, Pill, Cookie, MessageCircle, Star } from "lucide-react";
+import { MessageCircle, Star } from "lucide-react";
+import avenaIntegralImg from "@/assets/products/avena-integral.jpg";
 
 interface Product {
   name: string;
   description?: string;
+  image?: string;
 }
 
 interface Category {
