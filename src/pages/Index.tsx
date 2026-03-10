@@ -4,6 +4,7 @@ import ProductCatalog from "@/components/ProductCatalog";
 import HowToBuy from "@/components/HowToBuy";
 import Testimonials from "@/components/Testimonials";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PWAInstallButton from "@/components/PWAInstallButton";
 import { MessageCircle } from "lucide-react";
 
 const Index = () => {
@@ -48,6 +49,9 @@ const Index = () => {
       >
         <MessageCircle className="w-7 h-7 text-primary-foreground" />
       </a>
+
+      {/* Floating PWA Install */}
+      <PWAInstallButton />
     </div>
   );
 };
