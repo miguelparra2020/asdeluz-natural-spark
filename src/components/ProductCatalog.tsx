@@ -1,4 +1,7 @@
-import { MessageCircle, Star } from "lucide-react";
+import { useState, useEffect } from "react";
+import { MessageCircle, Search, Star, X } from "lucide-react";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 import avenaIntegralImg from "@/assets/products/avena-integral.jpg";
 import quinoaImg from "@/assets/products/quinoa.jpg";
 import semillasCalabazaImg from "@/assets/products/semillas-de-calabaza.jpg";
@@ -162,11 +165,67 @@ const ProductCard = ({ product, categoryEmoji }: { product: Product; categoryEmo
   );
 };
 
+/* ── Tipo enriquecido con la categoría a la que pertenece ── */
+interface ProductWithCategory extends Product {
+  categoryEmoji: string;
+  categoryTitle: string;
+}
+
+const allProducts: ProductWithCategory[] = categories.flatMap((cat) =>
+  cat.products.map((p) => ({
+    ...p,
+    categoryEmoji: cat.emoji,
+    categoryTitle: cat.title,
+  }))
+);
+
 const ProductCatalog = () => {
+  const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  // Muestra spinner inmediato y abre el modal 3 s después de dejar de escribir
+  useEffect(() => {
+    if (query.trim().length < 2) {
+      setDebouncedQuery("");
+      setIsSearching(false);
+      setOpen(false);
+      return;
+    }
+    setIsSearching(true);
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+      setIsSearching(false);
+      setOpen(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  const results = debouncedQuery.trim().length >= 2
+    ? allProducts.filter((p) =>
+        p.name.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+        (p.description ?? "").toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+        p.categoryTitle.toLowerCase().includes(debouncedQuery.toLowerCase())
+      )
+    : [];
+
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setQuery("");
+    setDebouncedQuery("");
+    setIsSearching(false);
+  };
+
   return (
     <section id="productos" className="py-20 bg-background">
       <div className="container">
-        <div className="text-center mb-16">
+        {/* Encabezado */}
+        <div className="text-center mb-10">
           <span className="text-sm font-semibold text-primary uppercase tracking-widest">Catálogo completo</span>
           <h2 className="text-4xl md:text-5xl font-display font-bold mt-3 text-foreground">
             Nuestros Productos
@@ -176,6 +235,71 @@ const ProductCatalog = () => {
           </p>
         </div>
 
+        {/* Buscador */}
+        <div className="relative max-w-lg mx-auto mb-16">
+          {/* Lupa (izquierda) */}
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground pointer-events-none" />
+
+          <Input
+            type="search"
+            placeholder="Buscar producto… (ej: chía, jengibre, semillas)"
+            value={query}
+            onChange={(e) => handleQueryChange(e.target.value)}
+            className="pl-12 pr-24 py-3 rounded-full border-border focus-visible:ring-primary text-base"
+          />
+
+          {/* Derecha: "Buscando..." mientras cuenta 3 s, o X para limpiar */}
+          {isSearching ? (
+            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-primary text-xs font-medium pointer-events-none">
+              Buscando...
+            </span>
+          ) : query ? (
+            <button
+              onClick={handleClose}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Limpiar búsqueda"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          ) : null}
+        </div>
+
+        {/* Modal de resultados */}
+        <Dialog open={open} onOpenChange={(v) => { if (!v) handleClose(); }}>
+          <DialogContent className="max-w-3xl w-full max-h-[80vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="font-display text-xl">
+                Resultados para &ldquo;{query}&rdquo;
+              </DialogTitle>
+            </DialogHeader>
+
+            {results.length === 0 ? (
+              <div className="py-12 text-center">
+                <span className="text-5xl mb-4 block">🔍</span>
+                <p className="text-muted-foreground">
+                  No encontramos productos con ese nombre.
+                </p>
+              </div>
+            ) : (
+              <>
+                <p className="text-sm text-muted-foreground -mt-2 mb-4">
+                  {results.length} {results.length === 1 ? "producto encontrado" : "productos encontrados"}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+                  {results.map((product) => (
+                    <ProductCard
+                      key={product.name}
+                      product={product}
+                      categoryEmoji={product.categoryEmoji}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </DialogContent>
+        </Dialog>
+
+        {/* Catálogo completo por categorías */}
         {categories.map((cat) => (
           <div key={cat.title} className="mb-14">
             <h3 className="font-display font-bold text-2xl text-foreground mb-6 flex items-center gap-3">
