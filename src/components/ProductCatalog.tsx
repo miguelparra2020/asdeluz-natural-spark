@@ -12,7 +12,7 @@ import mielImg from "@/assets/products/miel.png";
 import chocolateCacaoPuroImg from "@/assets/products/chocolate.png";
 import salMarinaImg from "@/assets/products/sal-marina.png";
 import vinagreManzanaImg from "@/assets/products/vinagre-manzana.png";
-import aceiteCocoImg from "@/assets/products/aceite-de-coco.png";
+import aceiteCocoImg from "@/assets/products/aceite-de-coco.jpg";
 import colagenoHidrolizadoMarinoImg from "@/assets/products/colageno.png";
 import gerImg from "@/assets/products/germen-de-trigo.png";
 import chiaImg from "@/assets/products/chia.png";
